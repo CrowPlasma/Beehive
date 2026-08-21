@@ -24,6 +24,12 @@
 - 📥 **Bulk Import:** Quickly set up your dashboard by importing a CSV or JSON file containing your apps.
 - 🎨 **Total Customization:** Upload custom images for app icons and set personalized wallpapers for every single dashboard.
 - 🌐 **Bilingual (i18n):** Native support for English and Spanish, switchable on the fly without reloading.
+<img width="960" height="456" alt="chrome_ljtXwrFr94" src="https://github.com/user-attachments/assets/11452718-fcac-4d62-88ee-c3b0446cdb43" />
+<img width="960" height="456" alt="chrome_aSiKTYSJXw" src="https://github.com/user-attachments/assets/88cd64b3-499d-4e3e-9e20-cc1bd797f67a" />
+<img width="960" height="456" alt="chrome_dJuWAG83Pl" src="https://github.com/user-attachments/assets/d4d05acd-51ce-4adf-a5d3-4770ed5d5590" />
+<img width="960" height="456" alt="chrome_EX2fKJap9y" src="https://github.com/user-attachments/assets/36ff8928-c318-4e30-a371-49ef83a8a86a" />
+<img width="960" height="456" alt="chrome_LXPFIIKNeN" src="https://github.com/user-attachments/assets/e636f494-8bfa-4118-990d-f8f38d823397" />
+<img width="960" height="456" alt="chrome_093BXRWQdS" src="https://github.com/user-attachments/assets/8043ccc8-a596-4560-9123-d0affebc5686" />
 
 ### 🛠️ Tech Stack
 
@@ -45,7 +51,7 @@ Beehive is designed to be deployed effortlessly using Docker and Docker Compose.
    ```bash
    docker-compose up -d
    ```
-3. Access your dashboard at `http://localhost:3000` (or the port you configured).
+3. Access your dashboard at `http://localhost:80` (or the port you configured).
 
 *Note: Beehive is fully compatible with container managers like Dockge and Portainer.*
 
@@ -64,6 +70,14 @@ Beehive is designed to be deployed effortlessly using Docker and Docker Compose.
 - 📥 **Importación Masiva:** Configura tu dashboard en segundos importando un archivo CSV o JSON con tus aplicaciones.
 - 🎨 **Personalización Total:** Sube imágenes personalizadas para los íconos de las apps y define fondos de pantalla únicos para cada tablero.
 - 🌐 **Bilingüe (i18n):** Soporte nativo para Inglés y Español, intercambiable al instante sin recargar la página.
+
+<img width="960" height="456" alt="chrome_ljtXwrFr94" src="https://github.com/user-attachments/assets/b26a56bc-3209-42e9-b070-17fd947a4a51" />
+<img width="960" height="456" alt="chrome_aSiKTYSJXw" src="https://github.com/user-attachments/assets/44b4ac56-0e94-4af6-a9b0-586d62cfbf58" />
+<img width="960" height="456" alt="chrome_dJuWAG83Pl" src="https://github.com/user-attachments/assets/0dc4071f-0033-463d-8b97-ed3557124ac4" />
+<img width="960" height="456" alt="chrome_EX2fKJap9y" src="https://github.com/user-attachments/assets/7f8b10bd-3f21-4a2a-91c7-5b524ce06c4f" />
+<img width="960" height="456" alt="chrome_LXPFIIKNeN" src="https://github.com/user-attachments/assets/30c33963-45f3-435d-a718-38d6b613ec21" />
+<img width="960" height="456" alt="chrome_093BXRWQdS" src="https://github.com/user-attachments/assets/ff3e1043-58d6-434c-b475-735142b69ee7" />
+
 
 ### 🛠️ Stack Tecnológico
 
@@ -85,7 +99,7 @@ Beehive está diseñado para desplegarse sin esfuerzo utilizando Docker y Docker
    ```bash
    docker-compose up -d
    ```
-3. Accede a tu dashboard en `http://localhost:3000` (o el puerto que hayas configurado).
+3. Accede a tu dashboard en `http://localhost:80` (o el puerto que hayas configurado).
 
 *Nota: Beehive es totalmente compatible con gestores de contenedores como Dockge y Portainer.*
 
