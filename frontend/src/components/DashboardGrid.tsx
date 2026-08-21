@@ -138,6 +138,7 @@ const CardView = React.forwardRef<HTMLDivElement, any>(({ card, onEdit, onClickC
   return (
     <div 
       ref={ref} 
+      title={card.name}
       style={{ ...style, width: c.w, height: c.h, left: c.left, top: c.top, zIndex: isOverlay ? 9999 : (isDragging ? 0 : (isHighlighted ? 40 : baseZIndex)) }}
       className={containerClass}
       {...attributes} 
@@ -179,8 +180,8 @@ const CardView = React.forwardRef<HTMLDivElement, any>(({ card, onEdit, onClickC
         className="absolute flex flex-col items-center justify-center pointer-events-none"
         style={{ left: -c.left, top: -c.top, width: HEX_WIDTH, height: HEX_HEIGHT }}
       >
-        <div className="z-10 bg-black/80 px-2 py-1.5 rounded text-center mt-auto mb-4 w-[85%] shadow-md pointer-events-none">
-          <p className="text-white font-bold text-[10px] sm:text-xs truncate">{card.name}</p>
+        <div className="z-10 bg-black/80 px-1.5 py-1 rounded text-center mt-auto mb-4 w-[92%] shadow-md pointer-events-none">
+          <p className="text-white font-bold text-[9px] sm:text-[11px] leading-tight line-clamp-2 break-words">{card.name}</p>
         </div>
 
         <button 
