@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AppTemplate {
+  id                String        @id @default(uuid())
+  name              String
+  description       String?
+  default_url       String
+  icon_url          String
+  is_global_default Boolean       @default(false)
+  instances         AppInstance[]
+  createdAt         DateTime      @default(now())
+}
+
+model Dashboard {
+  id              String        @id @default(uuid())
+  name            String
+  wallpaperBase64 String?
+  instances       AppInstance[]
+  createdAt       DateTime      @default(now())
+}
+
+model AppInstance {
+  id              String       @id @default(uuid())
+  dashboardId     String
+  dashboard       Dashboard    @relation(fields: [dashboardId], references: [id], onDelete: Cascade)
+  templateId      String?
+  template        AppTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  custom_name     String
+  custom_url      String
+  custom_icon_url String?
+  row             Int          @default(0)
+  col             Int          @default(0)
+  size            String       @default("small")
+  bgBase64        String?
+  display_order   Int          @default(0)
+  createdAt       DateTime     @default(now())
+}

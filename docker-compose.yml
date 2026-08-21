@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: beehive_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: beehivepassword
+      POSTGRES_DB: beehive
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - beehive_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: beehive-backend
+    container_name: beehive_backend
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://postgres:beehivepassword@db:5432/beehive?schema=public
+      - PORT=4000
+      - NODE_ENV=production
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    networks:
+      - beehive_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: beehive-frontend
+    container_name: beehive_frontend
+    restart: always
+    environment:
+      - BACKEND_URL=http://beehive_backend:4000
+    ports:
+      - "80:3000"
+    depends_on:
+      - backend
+    networks:
+      - beehive_network
+
+volumes:
+  pgdata:
+
+networks:
+  beehive_network:
+    driver: bridge
