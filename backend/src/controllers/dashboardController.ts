@@ -161,14 +161,49 @@ export const injectGlobalApp = async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Name is required' });
     }
 
-    const allDashboards = await prisma.dashboard.findMany({
+    // 1. Get the Principal dashboard to find all defined projects
+    let principal = await prisma.dashboard.findFirst({
+      where: { name: 'Principal' },
       include: { instances: true }
     });
 
+    if (!principal) {
+       return res.json({ success: true, injectedCount: 0 });
+    }
+
+    const projectIds = principal.instances.map(inst => inst.id);
+    if (projectIds.length === 0) {
+       return res.json({ success: true, injectedCount: 0 });
+    }
+
+    // 2. Fetch existing dashboards for these projects
+    const existingDashboards = await prisma.dashboard.findMany({
+      where: { id: { in: projectIds } },
+      include: { instances: true }
+    });
+
+    const existingIds = existingDashboards.map(d => d.id);
+    const missingIds = projectIds.filter(id => !existingIds.includes(id));
+
+    // 3. Create missing dashboards
+    const newDashboards = [];
+    for (const id of missingIds) {
+      const newDash = await prisma.dashboard.create({
+        data: {
+          id,
+          name: `Proyecto ${id}`
+        },
+        include: { instances: true }
+      });
+      newDashboards.push(newDash);
+    }
+
+    const allProjectDashboards = [...existingDashboards, ...newDashboards];
     const newInstances = [];
 
-    for (const dashboard of allDashboards) {
-      const slot = getFirstEmptySlot(size || 'small', dashboard.instances);
+    // 4. Inject only into the project dashboards (NOT Principal)
+    for (const dashboard of allProjectDashboards) {
+      const slot = getFirstEmptySlot(size || 'small', dashboard.instances || []);
       
       newInstances.push({
         dashboardId: dashboard.id,
